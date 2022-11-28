@@ -16,6 +16,6 @@ import java.util.List;
 @Entity
 public class Service extends BaseEntity {
     @OneToMany(targetEntity = Worker.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "sw_fk", referencedColumnName = "id")
+    @JoinColumn(name = "service_fk", referencedColumnName = "id")
     private List<Worker> workers;
 }
