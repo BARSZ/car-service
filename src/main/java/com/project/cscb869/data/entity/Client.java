@@ -14,8 +14,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Service extends BaseEntity {
-    @OneToMany(targetEntity = Worker.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "service_fk", referencedColumnName = "id")
-    private List<Worker> workers;
+public class Client extends BaseEntity{
+    @OneToMany(targetEntity = Car.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_fk", referencedColumnName = "id")
+    private List<Car> cars;
 }
