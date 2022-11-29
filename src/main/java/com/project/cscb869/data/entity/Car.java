@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Worker extends BaseEntity{
-    private ServiceType qualification;
+public class Car extends BaseEntity{
+    private String registrationNum;
+    private String model;
+    private int productionYear;
 }
