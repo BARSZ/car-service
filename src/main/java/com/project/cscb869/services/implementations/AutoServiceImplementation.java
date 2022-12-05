@@ -21,12 +21,13 @@ public class AutoServiceImplementation  implements AutoServiceService {
 
     @Override
     public AutoService getService(long id) {
-        return null;
+        return autoServiceRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid auto service id: " + id));
     }
 
     @Override
     public AutoService createService(AutoService autoService) {
-        return null;
+        return autoServiceRepository.save(autoService);
     }
 
     @Override
