@@ -13,5 +13,7 @@ public interface AutoServiceService {
 
     AutoService updateService(long id, AutoService autoService);
 
-    AutoService deleteService(long id);
+    void deleteService(long id);
+
+    AutoService getAutoServiceByName(String name);
 }
