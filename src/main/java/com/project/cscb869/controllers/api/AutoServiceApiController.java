@@ -18,12 +18,27 @@ public class AutoServiceApiController {
     }
 
     @RequestMapping("/api/services/{id}")
-    public AutoService getAutoService(@PathVariable("id") int id){
+    public AutoService getAutoService(@PathVariable("id") long id){
         return autoServiceService.getService(id);
     }
 
     @PostMapping(value = "/api/services")
     public AutoService createAutoService(@RequestBody AutoService autoService){
         return autoServiceService.createService(autoService);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/api/services/{id}")
+    public AutoService updateAutoService(@PathVariable("id") long id, @RequestBody AutoService autoService){
+        return autoServiceService.updateService(id, autoService);
+    }
+
+    @DeleteMapping(value = "/api/services/{id}")
+    public void deleteAutoService(@PathVariable("id") long id){
+        autoServiceService.deleteService(id);
+    }
+
+    @GetMapping(value = "api/services/{name}")
+    public AutoService getAutoServiceByName(@PathVariable("name") String name){
+        return autoServiceService.getAutoServiceByName(name);
     }
 }

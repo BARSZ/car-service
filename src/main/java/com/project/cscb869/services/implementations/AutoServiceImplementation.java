@@ -32,11 +32,17 @@ public class AutoServiceImplementation  implements AutoServiceService {
 
     @Override
     public AutoService updateService(long id, AutoService autoService) {
-        return null;
+        autoService.setId(id);
+        return autoServiceRepository.save(autoService);
     }
 
     @Override
-    public AutoService deleteService(long id) {
-        return null;
+    public void deleteService(long id) {
+        autoServiceRepository.deleteById(id);
+    }
+
+    @Override
+    public AutoService getAutoServiceByName(String name){
+        return autoServiceRepository.getAutoServiceByName(name);
     }
 }
