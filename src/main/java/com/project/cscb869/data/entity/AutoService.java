@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "service")
+@Table(name = "auto_service")
 public class AutoService extends BaseEntity {
     @OneToMany(targetEntity = Worker.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "service_fk", referencedColumnName = "id")
