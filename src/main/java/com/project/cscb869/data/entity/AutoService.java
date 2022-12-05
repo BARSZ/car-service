@@ -1,5 +1,6 @@
 package com.project.cscb869.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,9 @@ import java.util.List;
 @Entity
 @Table(name = "auto_service")
 public class AutoService extends BaseEntity {
-    @OneToMany(targetEntity = Worker.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "service_fk", referencedColumnName = "id")
+
+    @OneToMany(mappedBy = "autoService")
+    @JsonIgnoreProperties("auto_service")
     private List<Worker> workers;
+
 }
