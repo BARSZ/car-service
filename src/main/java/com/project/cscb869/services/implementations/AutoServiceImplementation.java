@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AutoServiceImplementation  implements AutoServiceService {
 
-    private AutoServiceRepository autoServiceRepository;
+    private final AutoServiceRepository autoServiceRepository;
 
     @Override
     public List<AutoService> getServices() {
