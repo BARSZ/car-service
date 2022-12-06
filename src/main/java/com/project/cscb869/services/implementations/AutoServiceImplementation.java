@@ -1,6 +1,7 @@
 package com.project.cscb869.services.implementations;
 
 import com.project.cscb869.data.entity.AutoService;
+import com.project.cscb869.data.entity.Car;
 import com.project.cscb869.data.repository.AutoServiceRepository;
 import com.project.cscb869.services.AutoServiceService;
 import lombok.AllArgsConstructor;
@@ -44,5 +45,9 @@ public class AutoServiceImplementation  implements AutoServiceService {
     @Override
     public AutoService getAutoServiceByName(String name){
         return autoServiceRepository.getAutoServiceByName(name);
+    }
+    @Override
+    public AutoService serviceCar(Car car){
+        return null;
     }
 }
