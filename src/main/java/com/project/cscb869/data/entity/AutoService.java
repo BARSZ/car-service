@@ -18,5 +18,4 @@ public class AutoService extends BaseEntity {
     @OneToMany(mappedBy = "autoService")
     @JsonIgnoreProperties("auto_service")
     private List<Worker> workers;
-
 }

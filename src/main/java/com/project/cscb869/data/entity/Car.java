@@ -19,6 +19,6 @@ public class Car extends BaseEntity{
     private String model;
     private int productionYear;
     @OneToMany(targetEntity = ServiceHistory.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_fk", referencedColumnName = "id")
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
     private List<ServiceHistory> serviceHistories;
 }

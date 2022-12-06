@@ -16,6 +16,6 @@ import java.util.List;
 @Entity
 public class Client extends BaseEntity{
     @OneToMany(targetEntity = Car.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_fk", referencedColumnName = "id")
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     private List<Car> cars;
 }
