@@ -1,5 +1,6 @@
 package com.project.cscb869.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -20,5 +21,6 @@ public class Car extends BaseEntity{
     private int productionYear;
     @OneToMany(targetEntity = ServiceHistory.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
+    @JsonBackReference
     private List<ServiceHistory> serviceHistories;
 }

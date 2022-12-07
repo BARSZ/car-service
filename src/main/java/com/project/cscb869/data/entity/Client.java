@@ -1,5 +1,6 @@
 package com.project.cscb869.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -17,5 +18,6 @@ import java.util.List;
 public class Client extends BaseEntity{
     @OneToMany(targetEntity = Car.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
+    @JsonManagedReference
     private List<Car> cars;
 }
