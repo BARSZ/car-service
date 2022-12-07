@@ -1,4 +1,4 @@
-package com.project.cscb869.controllers.api;
+package com.project.cscb869.controllers;
 
 import com.project.cscb869.data.entity.AutoService;
 import com.project.cscb869.services.AutoServiceService;
@@ -11,6 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 public class AutoServiceApiController {
     private final AutoServiceService autoServiceService;
+
+    //private final ModelMapper modelMapper;
 
     @GetMapping(value = "/api/services")
     public List<AutoService> getAutoServices(){

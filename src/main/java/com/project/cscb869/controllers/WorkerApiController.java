@@ -1,4 +1,4 @@
-package com.project.cscb869.controllers.api;
+package com.project.cscb869.controllers;
 
 import com.project.cscb869.data.entity.AutoService;
 import com.project.cscb869.data.entity.Worker;
@@ -29,7 +29,7 @@ public class WorkerApiController {
     public Worker updateWorker(@PathVariable("id") long id, @RequestBody Worker worker){
         return workerService.updateWorker(id, worker);
     }
-    @PostMapping(value = "/api/workers/{worker-id}/service")
+    @PostMapping(value = "/api/workers/{worker-id}/add-service")
     public Worker addAutoService(@PathVariable("worker-id") long workerId, @RequestBody AutoService autoService){
         return workerService.assignAutoService(workerId, autoService);
     }
