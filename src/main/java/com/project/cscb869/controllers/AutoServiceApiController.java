@@ -1,8 +1,11 @@
 package com.project.cscb869.controllers;
 
+import com.project.cscb869.data.dto.AutoServiceDto;
 import com.project.cscb869.data.entity.AutoService;
+import com.project.cscb869.data.entity.Worker;
 import com.project.cscb869.services.AutoServiceService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,16 +15,16 @@ import java.util.List;
 public class AutoServiceApiController {
     private final AutoServiceService autoServiceService;
 
-    //private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @GetMapping(value = "/api/services")
     public List<AutoService> getAutoServices(){
         return autoServiceService.getServices();
     }
 
-    @RequestMapping("/api/services/{id}")
-    public AutoService getAutoService(@PathVariable("id") long id){
-        return autoServiceService.getService(id);
+    @GetMapping("/api/services/{id}")
+    public AutoServiceDto getAutoService(@PathVariable("id") long id){
+        return modelMapper.map(autoServiceService.getService(id), AutoServiceDto.class);
     }
 
     @PostMapping(value = "/api/services")
@@ -39,8 +42,12 @@ public class AutoServiceApiController {
         autoServiceService.deleteService(id);
     }
 
-    @GetMapping(value = "api/services/{name}")
+    @GetMapping(value = "/api/services/name/{name}")
     public AutoService getAutoServiceByName(@PathVariable("name") String name){
         return autoServiceService.getAutoServiceByName(name);
+    }
+    @PostMapping(value = "/api/services/{id}/add-worker")
+    public AutoService addWorker(@PathVariable long id, @RequestBody Worker worker){
+        return autoServiceService.addWorker(id, worker);
     }
 }

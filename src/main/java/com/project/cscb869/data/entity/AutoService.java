@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,9 +18,8 @@ import java.util.List;
 @Entity
 @Table(name = "auto_service")
 public class AutoService extends BaseEntity {
-
     @OneToMany(mappedBy = "autoService")
     @JsonIgnoreProperties("auto_service")
     @JsonManagedReference
-    private List<Worker> workers;
+    private List<Worker> workers = new ArrayList<>();
 }

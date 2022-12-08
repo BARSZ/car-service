@@ -42,7 +42,7 @@ public class WorkerServiceImplementation implements WorkerService {
     }
 
     @Override
-    public Worker assignAutoService(long workerId, AutoService autoService) {
+    public Worker addAutoService(long workerId, AutoService autoService) {
         Worker worker = workerRepository.findById(workerId).orElseThrow();
         worker.setAutoService(autoService);
         workerRepository.save(worker);
