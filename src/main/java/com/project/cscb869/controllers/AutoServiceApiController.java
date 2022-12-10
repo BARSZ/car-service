@@ -19,12 +19,16 @@ public class AutoServiceApiController {
 
     @GetMapping(value = "/api/services")
     public List<AutoService> getAutoServices(){
+        /*return autoServiceService.getServices().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());*/
         return autoServiceService.getServices();
     }
 
     @GetMapping("/api/services/{id}")
-    public AutoServiceDto getAutoService(@PathVariable("id") long id){
-        return modelMapper.map(autoServiceService.getService(id), AutoServiceDto.class);
+    public AutoService getAutoService(@PathVariable("id") long id){
+        //return convertToDto(autoServiceService.getService(id));
+        return autoServiceService.getService(id);
     }
 
     @PostMapping(value = "/api/services")
@@ -43,11 +47,14 @@ public class AutoServiceApiController {
     }
 
     @GetMapping(value = "/api/services/name/{name}")
-    public AutoService getAutoServiceByName(@PathVariable("name") String name){
-        return autoServiceService.getAutoServiceByName(name);
+    public AutoServiceDto getAutoServiceByName(@PathVariable("name") String name){
+        return convertToDto(autoServiceService.getAutoServiceByName(name));
     }
     @PostMapping(value = "/api/services/{id}/add-worker")
     public AutoService addWorker(@PathVariable long id, @RequestBody Worker worker){
         return autoServiceService.addWorker(id, worker);
+    }
+    private AutoServiceDto convertToDto(AutoService autoService) {
+        return modelMapper.map(autoService, AutoServiceDto.class);
     }
 }
