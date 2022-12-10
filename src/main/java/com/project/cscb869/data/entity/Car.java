@@ -1,10 +1,7 @@
 package com.project.cscb869.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,4 +20,10 @@ public class Car extends BaseEntity{
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     @JsonBackReference
     private List<ServiceHistory> serviceHistories;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+    @ManyToOne
+    @JoinColumn(name = "auto_service_id")
+    private AutoService autoService;
 }
