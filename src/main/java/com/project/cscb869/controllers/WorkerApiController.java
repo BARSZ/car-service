@@ -15,6 +15,7 @@ public class WorkerApiController {
     private final WorkerService workerService;
 
     private final ModelMapper modelMapper;
+    @CrossOrigin(value = "http://localhost:3000/")
     @GetMapping(value = "/api/workers")
     public List<Worker> getWorkers(){
         return workerService.getWorkers();

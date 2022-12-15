@@ -17,6 +17,7 @@ public class AutoServiceApiController {
 
     private final ModelMapper modelMapper;
 
+    @CrossOrigin(value = "http://localhost:3000/")
     @GetMapping(value = "/api/services")
     public List<AutoService> getAutoServices(){
         /*return autoServiceService.getServices().stream()
