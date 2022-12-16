@@ -45,4 +45,10 @@ public class User implements UserDetails {
 
     @OneToOne(mappedBy = "usernameId")
     private AutoService autoService;
+
+    @OneToOne(mappedBy = "usernameId")
+    private Client client;
+
+    @OneToOne(mappedBy = "usernameId")
+    private Worker worker;
 }

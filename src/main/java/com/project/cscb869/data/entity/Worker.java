@@ -1,10 +1,7 @@
 package com.project.cscb869.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,4 +17,8 @@ public class Worker extends BaseEntity{
     @JoinColumn(name = "auto_service_id")
     @JsonBackReference
     private AutoService autoService;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User usernameId;
 }
