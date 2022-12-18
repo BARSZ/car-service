@@ -25,7 +25,7 @@ public class AutoService extends BaseEntity {
     @OneToMany(mappedBy = "autoService")
     private List<Car> carsToBeServiced;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User usernameId;
+    //OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "user_id", referencedColumnName = "id")
+    //private User usernameId;
 }
