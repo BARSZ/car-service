@@ -20,6 +20,7 @@ public class Car extends BaseEntity{
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     @JsonBackReference
     private List<ServiceHistory> serviceHistories;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
