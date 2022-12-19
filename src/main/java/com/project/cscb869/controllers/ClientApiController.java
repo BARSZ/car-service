@@ -1,6 +1,5 @@
 package com.project.cscb869.controllers;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.project.cscb869.data.entity.Client;
 import com.project.cscb869.services.ClientService;
 import lombok.AllArgsConstructor;
@@ -33,8 +32,9 @@ public class ClientApiController {
     public void deleteClient(@PathVariable long id){
         clientService.deleteClient(id);
     }
-    @PostMapping(value = "/api/clients/schedule-service")
-    public void scheduleService(@RequestBody ObjectNode objectNode){
-        clientService.CanScheduleService(objectNode.get("autoServiceName").asText(), objectNode.get("carToBeServiced").asText());
+    @PostMapping(value = "/api/clients/schedule-service/{id}")
+    public boolean scheduleService(@PathVariable long id, @RequestBody long carId){
+        clientService.CanScheduleService(carId, id);
+        return true;
     }
 }

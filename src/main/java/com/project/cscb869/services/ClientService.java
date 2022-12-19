@@ -10,5 +10,5 @@ public interface ClientService {
     public Client createClient(Client client);
     public Client updateClient(Client client, long id);
     public void deleteClient(long id);
-    public void CanScheduleService(String autoServiceName, String carName);
+    public void CanScheduleService(long carId, long autoServiceId);
 }

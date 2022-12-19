@@ -12,26 +12,21 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(value = "http://localhost:3000/")
 public class AutoServiceApiController {
     private final AutoServiceService autoServiceService;
 
     private final ModelMapper modelMapper;
 
-    @CrossOrigin(value = "http://localhost:3000/")
     @GetMapping(value = "/api/services")
     public List<AutoService> getAutoServices(){
-        /*return autoServiceService.getServices().stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());*/
         return autoServiceService.getServices();
     }
-
     @GetMapping("/api/services/{id}")
     public AutoService getAutoService(@PathVariable("id") long id){
         //return convertToDto(autoServiceService.getService(id));
         return autoServiceService.getService(id);
     }
-
     @PostMapping(value = "/api/services")
     public AutoService createAutoService(@RequestBody AutoService autoService){
         return autoServiceService.createService(autoService);
