@@ -4,6 +4,7 @@ import com.project.cscb869.data.entity.*;
 import com.project.cscb869.data.repository.AutoServiceRepository;
 import com.project.cscb869.data.repository.CarRepository;
 import com.project.cscb869.data.repository.ClientRepository;
+import com.project.cscb869.exceptions.NotFoundException;
 import com.project.cscb869.services.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ClientServiceImplementation implements ClientService {
 
     @Override
     public Client getClient(long id) {
-        return clientRepository.findById(id).orElseThrow();
+        return clientRepository.findById(id).orElseThrow(() -> new NotFoundException("Client with id "+ id +" doesn't exist!"));
     }
 
     @Override
@@ -33,35 +34,38 @@ public class ClientServiceImplementation implements ClientService {
 
     @Override
     public Client updateClient(Client client, long id) {
-        client.setId(id);
-        return clientRepository.save(client);
+        if(clientRepository.findById(id).isPresent()){
+            client.setId(id);
+            return clientRepository.save(client);
+        }else{
+            throw new NotFoundException("Client with id " + id + "doesn't exist!");
+        }
     }
 
     @Override
     public void deleteClient(long id) {
-        clientRepository.deleteById(id);
+        if(clientRepository.findById(id).isPresent()){
+            clientRepository.deleteById(id);
+        }else{
+            throw new NotFoundException("Client with id " + id + "doesn't exist!");
+        }
     }
 
     @Override
-    public void CanScheduleService(String autoServiceName, String carName){
-        Car carToBeServiced = carRepository.getCarByName(carName);
-        AutoService autoService = autoServiceRepository.getAutoServiceByName(autoServiceName);
+    public void CanScheduleService(long carId, long serviceId){
+        if(carRepository.findById(carId).isPresent()){
+            throw new NotFoundException("Car with id " + carId + "doesn't exist!");
+        }
+        if(autoServiceRepository.findById(serviceId).isEmpty()){
+            throw new NotFoundException("Auto Service with id " + serviceId + "doesn't exist!");
+        }
+        Car carToBeServiced = carRepository.findById(carId).orElseThrow(() -> new NotFoundException("Car with id " + carId + "doesn't exist!"));
+        AutoService autoService = autoServiceRepository.findById(serviceId).orElseThrow(() -> new NotFoundException("Auto Service with id " + serviceId + "doesn't exist!"));
 
         autoService.getCarsToBeServiced().add(carToBeServiced);
-        carToBeServiced.setAutoService(autoService);
-
         autoServiceRepository.save(autoService);
-        carRepository.save(carToBeServiced);
-        /*for(Worker worker : autoService.getWorkers()){
-            if(worker.getQualification() == serviceType){
-                autoService.getCarsToBeServiced().add(carToBeServiced);
-                carToBeServiced.setAutoService(autoService);
 
-                carRepository.save(carToBeServiced);
-                autoServiceRepository.save(autoService);
-                return true;
-            }
-        }
-        return false;*/
+        carToBeServiced.setAutoService(autoService);
+        carRepository.save(carToBeServiced);
     }
 }
