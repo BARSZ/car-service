@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(value = "http://localhost:3000/")
+@CrossOrigin(origins={ "http://localhost:3000"})
 public class AutoServiceApiController {
     private final AutoServiceService autoServiceService;
 
