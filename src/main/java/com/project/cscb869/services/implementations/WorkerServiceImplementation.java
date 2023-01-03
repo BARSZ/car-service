@@ -3,6 +3,7 @@ package com.project.cscb869.services.implementations;
 import com.project.cscb869.data.entity.AutoService;
 import com.project.cscb869.data.entity.Worker;
 import com.project.cscb869.data.repository.WorkerRepository;
+import com.project.cscb869.exceptions.NotFoundException;
 import com.project.cscb869.services.WorkerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class WorkerServiceImplementation implements WorkerService {
     @Override
     public Worker getWorker(long id) {
         return workerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid worker id: " + id));
+                .orElseThrow(() -> new NotFoundException("Invalid worker id: " + id));
     }
 
     @Override
