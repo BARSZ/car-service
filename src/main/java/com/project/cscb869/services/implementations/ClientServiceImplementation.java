@@ -8,6 +8,7 @@ import com.project.cscb869.exceptions.NotFoundException;
 import com.project.cscb869.services.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,21 +18,26 @@ public class ClientServiceImplementation implements ClientService {
     private final ClientRepository clientRepository;
     private final AutoServiceRepository autoServiceRepository;
     private final CarRepository carRepository;
+
+    @Transactional
     @Override
     public List<Client> getClients() {
         return clientRepository.findAll();
     }
 
+    @Transactional
     @Override
     public Client getClient(long id) {
         return clientRepository.findById(id).orElseThrow(() -> new NotFoundException("Client with id "+ id +" doesn't exist!"));
     }
 
+    @Transactional
     @Override
     public Client createClient(Client client) {
         return clientRepository.save(client);
     }
 
+    @Transactional
     @Override
     public Client updateClient(Client client, long id) {
         if(clientRepository.findById(id).isPresent()){
@@ -42,6 +48,7 @@ public class ClientServiceImplementation implements ClientService {
         }
     }
 
+    @Transactional
     @Override
     public void deleteClient(long id) {
         if(clientRepository.findById(id).isPresent()){
@@ -51,6 +58,7 @@ public class ClientServiceImplementation implements ClientService {
         }
     }
 
+    @Transactional
     @Override
     public void CanScheduleService(long carId, long serviceId){
         if(carRepository.findById(carId).isPresent()){
