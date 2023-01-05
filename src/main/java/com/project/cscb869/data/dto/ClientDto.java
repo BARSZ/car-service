@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class AutoServiceDto {
+public class ClientDto {
     private String name;
-    private List<WorkerDto> workers = new ArrayList<>();
+    private List<CarDto> cars = new ArrayList<>();
 }

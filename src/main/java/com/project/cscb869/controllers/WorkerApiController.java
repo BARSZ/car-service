@@ -11,31 +11,27 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(value = "http://localhost:3000/")
+@RequestMapping("/api/worker")
 public class WorkerApiController {
+    private final static String ID = "/{id}";
     private final WorkerService workerService;
-
     private final ModelMapper modelMapper;
-    @CrossOrigin(value = "http://localhost:3000/")
-    @GetMapping(value = "/api/workers")
+
+    @GetMapping
     public List<Worker> getWorkers(){
         return workerService.getWorkers();
     }
-    @GetMapping(value = "/api/workers/{id}")
+    @GetMapping(ID)
     public WorkerDto getWorker(@PathVariable("id") long id){
         return modelMapper.map(workerService.getWorker(id), WorkerDto.class);
     }
-    @PostMapping(value = "/api/workers")
+    @PostMapping
     public Worker addWorker(@RequestBody Worker worker){
         return workerService.addWorker(worker);
     }
-    @RequestMapping(method = RequestMethod.PUT, value = "/api/workers/{id}")
+    @PutMapping(ID)
     public Worker updateWorker(@PathVariable("id") long id, @RequestBody Worker worker){
         return workerService.updateWorker(id, worker);
     }
-    /*
-    @PostMapping(value = "/api/workers/{worker-id}/add-service")
-    public Worker addAutoService(@PathVariable("worker-id") long workerId, @RequestBody AutoService autoService){
-        return workerService.assignAutoService(workerId, autoService);
-    }
-    */
 }

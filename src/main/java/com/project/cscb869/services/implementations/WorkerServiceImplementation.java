@@ -7,6 +7,7 @@ import com.project.cscb869.exceptions.NotFoundException;
 import com.project.cscb869.services.WorkerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,33 +16,39 @@ import java.util.List;
 public class WorkerServiceImplementation implements WorkerService {
 
     private final WorkerRepository workerRepository;
+    @Transactional
     @Override
     public List<Worker> getWorkers() {
         return workerRepository.findAll();
     }
 
+    @Transactional
     @Override
     public Worker getWorker(long id) {
         return workerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Invalid worker id: " + id));
     }
 
+    @Transactional
     @Override
     public Worker addWorker(Worker worker) {
         return workerRepository.save(worker);
     }
 
+    @Transactional
     @Override
     public Worker updateWorker(long id, Worker worker) {
         worker.setId(id);
         return workerRepository.save(worker);
     }
 
+    @Transactional
     @Override
     public void deleteWorker(long id) {
         workerRepository.deleteById(id);
     }
 
+    @Transactional
     @Override
     public Worker addAutoService(long workerId, AutoService autoService) {
         Worker worker = workerRepository.findById(workerId).orElseThrow();
