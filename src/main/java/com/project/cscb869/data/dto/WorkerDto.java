@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WorkerDto {
+    private long id;
     private String name;
     private ServiceType qualification;
     private AutoServiceDto autoService;

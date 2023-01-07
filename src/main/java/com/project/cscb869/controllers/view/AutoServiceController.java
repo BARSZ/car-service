@@ -1,5 +1,6 @@
 package com.project.cscb869.controllers.view;
 
+import com.project.cscb869.data.dto.AutoServiceDto;
 import com.project.cscb869.data.entity.AutoService;
 import com.project.cscb869.data.model.AutoServiceModel;
 import com.project.cscb869.services.AutoServiceService;
@@ -21,7 +22,10 @@ public class AutoServiceController {
     private ModelMapper modelMapper;
     @GetMapping
     public String getServices(Model model){
-        final List<AutoService> services = autoService.getServices();
+        final List<AutoServiceDto> services = autoService.getServices()
+                .stream()
+                .map(autoService -> modelMapper.map(autoService, AutoServiceDto.class))
+                .toList();
         model.addAttribute("services", services);
         return "/service/services.html";
     }
