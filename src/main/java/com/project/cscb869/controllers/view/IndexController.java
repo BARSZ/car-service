@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @RequestMapping("/")
 public class IndexController {
-
     @GetMapping
     public String getIndex(Model model){
         final String welcomeMessage = "Welcome to the Auto Service Management System!";

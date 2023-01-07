@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4>All Workers:</h4>
+<div class="col-6">
+    <h3 th:unless="${workers} and ${workers.size()}">There are no workers!</h3>
+    <table th:if="${workers.size()>0}" class="table table-hover">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Qualification</th>
+        <th>AutoService</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="worker : ${workers}">
+            <td th:text="${worker.id}"></td>
+            <td th:text="${worker.name}"></td>
+            <td th:text="${worker.qualification}"></td>
+            <td th:if="${worker.autoService!=null}" th:text="${worker.autoService.name}"></td>
+            <td th:unless="${worker.autoService!=null}" th:text="Assign"></td>
+            <td><a class="btn btn-info" th:href="@{'/worker/edit-worker/'+${worker.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/worker/delete/'+${worker.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

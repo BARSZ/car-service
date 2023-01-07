@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 public class AutoServiceDto {
+    private long id;
     private String name;
     private List<WorkerDto> workers = new ArrayList<>();
 }
