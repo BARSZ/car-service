@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4>Add New Car: </h4>
+<div class="col-6">
+    <form action="#" th:action="@{/car/create}" th:object="${car}" method="post">
+        <div class="form-group">
+
+            <label for="model">Model</label>
+            <input class="form-control" type="text" th:field="*{model}" placeholder="Model" id="model">
+
+            <label for="registrationNum">Registration Number</label>
+            <input class="form-control" type="text" th:field="*{registrationNum}" placeholder="Registration Number" id="registrationNum">
+
+            <label for="productionYear">Production Year</label>
+            <input class="form-control" type="number" th:field="*{productionYear}" placeholder="Production Year" id="productionYear">
+
+        </div>
+        <button type="submit" class="btn btn-primary">Save New Car</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

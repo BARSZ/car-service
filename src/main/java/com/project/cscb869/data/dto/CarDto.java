@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class CarDto {
+    private long id;
     private String registrationNum;
     private String model;
     private int productionYear;

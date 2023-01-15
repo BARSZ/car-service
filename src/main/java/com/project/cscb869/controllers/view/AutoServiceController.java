@@ -42,7 +42,6 @@ public class AutoServiceController {
         autoService.createService(modelMapper.map(autoServiceModel, AutoService.class));
         return "redirect:/service";
     }
-
     @GetMapping("/edit-service/{id}")
     public String showEditServiceForm(Model model, @PathVariable long id){
         model.addAttribute("service", autoService.getService(id));
