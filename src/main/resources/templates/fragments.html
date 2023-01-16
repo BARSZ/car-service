@@ -4,50 +4,67 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <title>Auto Service Management</title>
     <meta charset="UTF-8">
-    <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
 <header th:fragment="header">
-    <h1>Auto Service Management System</h1>
+    <div class="col-9">
+        <h1>Auto Service Management System</h1>
+    </div>
+
+    <div class="col-3" sec:authorize="isAuthenticated()">
+        Hello,
+        <span sec:authentication="name"></span>
+        <a class="btn" th:href="@{/logout}">Logout</a>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navigation">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/service">Show All AutoServices</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/service/create-service">Create Auto Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/client">Show all clients</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/client/create-client">Create Client</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/worker">Show Workers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/worker/create-worker">Create Worker</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/car">Show Cars</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/car/create-car">Create Car</a>
-                </li>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/service">Show All AutoServices</a>
+                    </li>
+                </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/service/create-service">Create Auto Service</a>
+                    </li>
+                </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/worker">Show Workers</a>
+                    </li>
+                    </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/worker/create-worker">Create Worker</a>
+                    </li>
+                </div>
+                <div sec:authorize="hasAuthority('CLIENT')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client">Show all clients</a>
+                    </li>
+                </div>
+                <div sec:authorize="hasAuthority('CLIENT')">
+                    <li class="nav-item">
+                         <a class="nav-link" href="/client/create-client">Create Client</a>
+                     </li>
+                </div>
             </ul>
         </div>
     </nav>
 </header>
 <footer page-footer font-small>
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <div class="footer-copyright text-center py-3">© 2023 Copyright:
         <a href="#">Auto Service Management System</a>
     </div>
 </footer>

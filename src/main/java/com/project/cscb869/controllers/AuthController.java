@@ -1,16 +1,47 @@
 package com.project.cscb869.controllers;
 
+import com.project.cscb869.data.entity.User;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 @AllArgsConstructor
-@CrossOrigin(origins={ "http://localhost:3000"})
+@RequestMapping("/")
 public class AuthController {
-    @GetMapping(value = "/login")
-    public String login() {
-        return "op";
+    @GetMapping
+    public String getIndex(Model model, Authentication authentication) {
+        final String welcomeMessage = "Welcome to the Auto Service Management System!";
+        model.addAttribute("welcome", welcomeMessage);
+
+        Authentication authentication2 = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", authentication.getName());
+
+        User principal = (User) authentication.getPrincipal();
+        model.addAttribute("username", principal.getAuthorities());
+
+        return "index";
+    }
+    @GetMapping("login")
+    public String login(Model model) {
+        final String welcomeMessage = "Welcome tsso the Auto Service Management System!";
+        model.addAttribute("welcome", welcomeMessage);
+        return "login";
+    }
+    @GetMapping("logout")
+    public String logout(Model model) {
+        final String welcomeMessage = "Welcome to the Auto Service Management System!";
+        model.addAttribute("welcome", welcomeMessage);
+        return "login";
+    }
+    @GetMapping("unauthorized")
+    public String unauthorized(Model model) {
+        final String welcomeMessage = "Welcome to the School Management System!";
+        model.addAttribute("welcome", welcomeMessage);
+        return "unauthorized";
     }
 }
