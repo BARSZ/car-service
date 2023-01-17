@@ -29,6 +29,16 @@ public class CarServiceImplementation implements CarService {
     }
     @Transactional
     @Override
+    public List<Car> getCarsByAutoServiceId(long id) {
+        return carRepository.getCarsByAutoServiceId(id);
+    }
+    @Transactional
+    @Override
+    public List<Car> getCarsByClientId(long id) {
+        return carRepository.getCarsByClientId(id);
+    }
+    @Transactional
+    @Override
     public Car addCar(Car car) {
         return carRepository.save(car);
     }

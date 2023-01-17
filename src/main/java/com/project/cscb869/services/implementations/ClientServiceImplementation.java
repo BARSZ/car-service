@@ -76,4 +76,9 @@ public class ClientServiceImplementation implements ClientService {
         carToBeServiced.setAutoService(autoService);
         carRepository.save(carToBeServiced);
     }
+
+    @Override
+    public List<Car> getCarsByClientId(long id) {
+        return carRepository.getCarsByClientId(id);
+    }
 }

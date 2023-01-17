@@ -5,7 +5,7 @@
 <header th:replace="fragments :: header"></header>
 <h4>Add New Car: </h4>
 <div class="col-6">
-    <form action="#" th:action="@{/car/create}" th:object="${car}" method="post">
+    <form action="#" th:action="@{/car/create/{id}(id = ${car.getClientId()})}" th:object="${car}" method="post">
         <div class="form-group">
 
             <label for="model">Model</label>

@@ -14,6 +14,6 @@ public class CarModel {
     @NotBlank
     @Size(min = 4, max = 8, message = "Min 4 Max 8")
     private String registrationNum;
-
     private int productionYear;
+    private long clientId;
 }
