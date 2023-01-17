@@ -17,4 +17,6 @@ public interface WorkerService {
     void deleteWorker(long id);
 
     Worker addAutoService(long workerId, AutoService autoService);
+
+    List<Worker> getWorkersForAutoService(long id);
 }

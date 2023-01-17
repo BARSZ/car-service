@@ -11,11 +11,15 @@
         <th>Name</th>
         <th>Edit</th>
         <th>Delete</th>
+        <th>Show Cars</th>
+        <th>Add Car</th>
         <tr th:each="client : ${clients}">
             <td th:text="${client.id}"></td>
             <td th:text="${client.name}"></td>
-            <td><a class="btn btn-info" th:href="@{'/client/edit-client/'+${client.id}}">Edit</a></td>
+            <td><a class="btn btn-primary" th:href="@{'/client/edit-client/'+${client.id}}">Edit</a></td>
             <td><a class="btn btn-danger" th:href="@{'/client/delete/'+${client.id}}">Delete</a></td>
+            <td><a class="btn btn-info" th:href="@{'/client/get-cars/'+${client.id}}">Show Cars</a></td>
+            <td><a class="btn btn-primary" th:href="@{'/car/create-car/'+${client.id}}">Add Car</a></td>
         </tr>
     </table>
 </div>

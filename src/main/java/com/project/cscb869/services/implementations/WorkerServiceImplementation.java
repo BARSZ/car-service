@@ -31,6 +31,12 @@ public class WorkerServiceImplementation implements WorkerService {
 
     @Transactional
     @Override
+    public List<Worker> getWorkersForAutoService(long id) {
+        return workerRepository.getWorkersByAutoServiceId(id);
+    }
+
+    @Transactional
+    @Override
     public Worker addWorker(Worker worker) {
         return workerRepository.save(worker);
     }

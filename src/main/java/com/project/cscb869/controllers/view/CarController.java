@@ -2,8 +2,10 @@ package com.project.cscb869.controllers.view;
 
 import com.project.cscb869.data.dto.CarDto;
 import com.project.cscb869.data.entity.Car;
+import com.project.cscb869.data.entity.Client;
 import com.project.cscb869.data.model.CarModel;
 import com.project.cscb869.services.CarService;
+import com.project.cscb869.services.ClientService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,6 +21,7 @@ import java.util.List;
 @RequestMapping("/car")
 public class CarController {
     private CarService carService;
+    private ClientService clientService;
     private ModelMapper modelMapper;
 
     @GetMapping
@@ -57,6 +60,30 @@ public class CarController {
     public String deleteCar(@PathVariable long id){
         carService.deleteCar(id);
         return "redirect:/car";
+    }
+    @GetMapping("/create-car/{id}")
+    public String showCreateCarFormForClient(@PathVariable long id, Model model){
+        CarModel carModel = new CarModel();
+        carModel.setClientId(id);
+        model.addAttribute("car", carModel);
+        return "/car/create-car";
+    }
+    @PostMapping("/create/{id}")
+    public String createCarForClient(@Valid @ModelAttribute("car") CarModel carModel, BindingResult bindingResult, @PathVariable long id){
+        if(bindingResult.hasErrors()){
+            return "/car/create-car";
+        }
+        Car car = modelMapper.map(carModel, Car.class);
+
+        car.setClient(clientService.getClient(id));
+        carService.addCar(car);
+
+        Client client = clientService.getClient(id);
+        client.getCars().add(car);
+
+        clientService.updateClient(client, id);
+
+        return "redirect:/client";
     }
 }
 
