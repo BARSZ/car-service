@@ -53,6 +53,17 @@ public class CarController {
     }
     @PostMapping("/update/{id}")
     public String editCar(Model model, @PathVariable long id, Car car){
+        Client client = new Client();
+        for (Client client1 : clientService.getClients())
+        {
+            for (Car car1 : client1.getCars())
+            {
+                if(car1.getId() == id){
+                    client = client1;
+                }
+            }
+        }
+        car.setClient(client);
         carService.updateCar(id, car);
         return "redirect:/car";
     }

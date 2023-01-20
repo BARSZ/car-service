@@ -19,7 +19,7 @@
             <td th:text="${worker.qualification}"></td>
             <td th:if="${worker.autoService!=null}" th:text="${worker.autoService.name}"></td>
             <td th:unless="${worker.autoService!=null}" th:text="Assign"></td>
-            <td><a class="btn btn-info" th:href="@{'/worker/edit-worker/'+${worker.id}}">Edit</a></td>
+            <td><a class="btn btn-primary" th:href="@{'/worker/edit-worker/'+${worker.id}}">Edit</a></td>
             <td><a class="btn btn-danger" th:href="@{'/worker/delete/'+${worker.id}}">Delete</a></td>
         </tr>
     </table>

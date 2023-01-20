@@ -1,6 +1,5 @@
 package com.project.cscb869.services.implementations;
 
-import com.project.cscb869.data.entity.AutoService;
 import com.project.cscb869.data.entity.Worker;
 import com.project.cscb869.data.repository.WorkerRepository;
 import com.project.cscb869.exceptions.NotFoundException;
@@ -47,19 +46,9 @@ public class WorkerServiceImplementation implements WorkerService {
         worker.setId(id);
         return workerRepository.save(worker);
     }
-
     @Transactional
     @Override
     public void deleteWorker(long id) {
         workerRepository.deleteById(id);
-    }
-
-    @Transactional
-    @Override
-    public Worker addAutoService(long workerId, AutoService autoService) {
-        Worker worker = workerRepository.findById(workerId).orElseThrow();
-        worker.setAutoService(autoService);
-        workerRepository.save(worker);
-        return worker;
     }
 }

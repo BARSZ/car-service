@@ -13,6 +13,7 @@
         <th>Delete</th>
         <th>Workers</th>
         <th>Cars</th>
+        <th>Add Worker</th>
         <tr th:each="service : ${services}">
             <td th:text="${service.id}"></td>
             <td th:text="${service.name}"></td>
@@ -20,6 +21,7 @@
             <td><a class="btn btn-danger" th:href="@{'/service/delete/'+${service.id}}">Delete</a></td>
             <td><a class="btn btn-info" th:href="@{'/service/get-workers/'+${service.id}}">Show Workers</a></td>
             <td><a class="btn btn-info" th:href="@{'service/get-cars/'+${service.id}}">Show Cars For Service</a></td>
+            <td><a class="btn btn-primary" th:href="@{'service/add-worker/'+${service.id}}">Add Worker</a></td>
         </tr>
     </table>
 </div>

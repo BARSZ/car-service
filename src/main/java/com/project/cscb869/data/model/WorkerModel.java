@@ -1,6 +1,5 @@
 package com.project.cscb869.data.model;
 
-import com.project.cscb869.data.dto.AutoServiceDto;
 import com.project.cscb869.data.entity.ServiceType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -14,5 +13,5 @@ public class WorkerModel {
     @Size(min = 1, max = 20, message = "Between 1 and 20 characters please!")
     private String name;
     private ServiceType qualification;
-    private AutoServiceDto autoService;
+    private long autoServiceId;
 }
