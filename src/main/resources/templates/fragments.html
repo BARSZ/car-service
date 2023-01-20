@@ -40,11 +40,6 @@ and open the template in the editor.
                     <li class="nav-item">
                         <a class="nav-link" href="/worker">Show Workers</a>
                     </li>
-                    </div>
-                <div sec:authorize="hasAuthority('ADMIN')">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/worker/create-worker">Create Worker</a>
-                    </li>
                 </div>
                 <div sec:authorize="hasAuthority('CLIENT')">
                     <li class="nav-item">

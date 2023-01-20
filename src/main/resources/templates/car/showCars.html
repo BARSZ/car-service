@@ -18,7 +18,7 @@
             <td th:text="${car.model}"></td>
             <td th:text="${car.registrationNum}"></td>
             <td th:text="${car.productionYear}"></td>
-            <td><a class="btn btn-info" th:href="@{'/car/edit-car/'+${car.id}}">Edit</a></td>
+            <td><a class="btn btn-primary" th:href="@{'/car/edit-car/'+${car.id}}">Edit</a></td>
             <td><a class="btn btn-danger" th:href="@{'/car/delete/'+${car.id}}">Delete</a></td>
         </tr>
     </table>

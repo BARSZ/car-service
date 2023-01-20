@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4>Edit Worker</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/worker/update/{id}(id=${worker.id})}" th:object="${worker}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
+            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+
+            <label for="qualification">Qualification</label>
+            <div class="dropdown">
+                <select th:field="*{qualification}" id="qualification">
+                    <option th:value="Suspension" th:text="Suspension"></option>
+                    <option th:value="Engine" th:text="Engine"></option>
+                    <option th:value="Brake" th:text="Brake"></option>
+                    <option th:value="General" th:text="General"></option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Worker</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

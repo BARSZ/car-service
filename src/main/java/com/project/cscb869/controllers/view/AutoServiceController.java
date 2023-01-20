@@ -4,7 +4,9 @@ import com.project.cscb869.data.dto.AutoServiceDto;
 import com.project.cscb869.data.dto.CarDto;
 import com.project.cscb869.data.dto.WorkerDto;
 import com.project.cscb869.data.entity.AutoService;
+import com.project.cscb869.data.entity.Worker;
 import com.project.cscb869.data.model.AutoServiceModel;
+import com.project.cscb869.data.model.WorkerModel;
 import com.project.cscb869.services.AutoServiceService;
 import com.project.cscb869.services.CarService;
 import com.project.cscb869.services.WorkerService;
@@ -80,5 +82,28 @@ public class AutoServiceController {
                 .toList();
         model.addAttribute("cars", cars);
         return "/car/showCars";
+    }
+    @GetMapping("/add-worker/{id}")
+    public String showAddWorkerForm(@PathVariable long id, Model model){
+        WorkerModel workerModel = new WorkerModel();
+        workerModel.setAutoServiceId(id);
+        model.addAttribute("worker", workerModel);
+        return "/worker/create-worker";
+    }
+    @PostMapping("/create/{id}")
+    public String addWorkerToAutoService(@Valid @ModelAttribute("worker") WorkerModel workerModel, BindingResult bindingResult, @PathVariable long id){
+        if(bindingResult.hasErrors()){
+            return "/worker/create-worker";
+        }
+        Worker worker = modelMapper.map(workerModel, Worker.class);
+
+        worker.setAutoService(autoService.getService(id));
+        workerService.addWorker(worker);
+
+        AutoService autoService1 = autoService.getService(id);
+        autoService1.getWorkers().add(worker);
+        autoService.updateService(id, autoService1);
+
+        return "redirect:/service";
     }
 }

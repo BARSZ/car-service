@@ -5,7 +5,7 @@
 <header th:replace="fragments :: header"></header>
 <h4>Add New Worker:</h4>
 <div class="col-6">
-    <form action="#" th:action="@{/worker/create}" th:object="${worker}" method="post">
+    <form action="#" th:action="@{/service/create/{id}(id = ${worker.getAutoServiceId()})}" th:object="${worker}" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
