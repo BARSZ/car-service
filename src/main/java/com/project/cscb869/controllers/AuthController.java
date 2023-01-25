@@ -28,7 +28,7 @@ public class AuthController {
     }
     @GetMapping("login")
     public String login(Model model) {
-        final String welcomeMessage = "Welcome tsso the Auto Service Management System!";
+        final String welcomeMessage = "Welcome to the Auto Service Management System!";
         model.addAttribute("welcome", welcomeMessage);
         return "login";
     }
@@ -40,7 +40,7 @@ public class AuthController {
     }
     @GetMapping("unauthorized")
     public String unauthorized(Model model) {
-        final String welcomeMessage = "Welcome to the School Management System!";
+        final String welcomeMessage = "Welcome to the Auto Service Management System!";
         model.addAttribute("welcome", welcomeMessage);
         return "unauthorized";
     }

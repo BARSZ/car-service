@@ -20,7 +20,7 @@ public class AutoServiceApiController {
     private final AutoServiceService autoServiceService;
     private final ModelMapper modelMapper;
 
-    @GetMapping
+    @GetMapping("/get-all")
     public List<AutoServiceDto> getAutoServices(){
         return autoServiceService.getServices()
                 .stream()
@@ -29,7 +29,6 @@ public class AutoServiceApiController {
     }
     @GetMapping(ID)
     public AutoServiceDto getAutoService(@PathVariable("id") long id){
-        //return convertToDto(autoServiceService.getService(id));
         return convertToDto(autoServiceService.getService(id));
     }
     @PostMapping
